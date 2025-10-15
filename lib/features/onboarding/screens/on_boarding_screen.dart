@@ -39,10 +39,14 @@ class OnBoardingScreen extends StatelessWidget {
             ),
             const Gap(40),
             InkWell(
-              onTap: () {
-                CacheHelper.sharedPreferences.setBool("onBoarding", true);
+              onTap: () async {
+                await CacheHelper.sharedPreferences.setBool("onBoarding", true);
                 if (context.mounted) {
-                  Navigator.pushReplacementNamed(context, Routes.home);
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    Routes.home,
+                    (route) => false,
+                  );
                 }
               },
               child: Container(
