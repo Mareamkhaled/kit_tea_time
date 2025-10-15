@@ -8,6 +8,11 @@ class Routing {
     switch (settings.name) {
       case Routes.splash:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
+      case Routes.onBoarding:
+        return MaterialPageRoute(
+          builder: (context) =>
+              const Scaffold(body: Center(child: Text("OnBoarding Placeholder"))),
+        );
 
       default:
         return MaterialPageRoute(builder: (_) => const NoRouteScreen());

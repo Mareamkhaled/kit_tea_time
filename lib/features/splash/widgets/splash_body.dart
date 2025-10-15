@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../core/routing/routes.dart';
 import '../../../core/utils/app_images.dart';
 
 class SplashBody extends StatefulWidget {
@@ -11,6 +12,14 @@ class SplashBody extends StatefulWidget {
 }
 
 class _SplashBodyState extends State<SplashBody> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return;
+      Navigator.pushReplacementNamed(context, Routes.onBoarding);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
