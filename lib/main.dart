@@ -1,8 +1,11 @@
+
 import 'package:device_preview/device_preview.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'core/helpers/cache_helper.dart';
+import 'core/helpers/di.dart';
 import 'core/routing/routes.dart';
 import 'core/routing/routing.dart';
 import 'core/utils/app_colors.dart';
@@ -10,9 +13,17 @@ import 'core/utils/app_colors.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  setUp();
+  Dio dio =Dio();
+    var data = await dio.get("https://meowfacts.herokuapp.com/?count=5");
+      debugPrint('Full response: ${data.data}'); // Raw body
+      debugPrint('Response headers: ${data.headers}');
   runApp(
-    DevicePreview(enabled: !kReleaseMode, builder: (context) => const MyApp()),
-  );
+   DevicePreview(enabled: !kReleaseMode, builder: (context) => const MyApp()),
+ );
+
+ 
+ 
 }
 
 class MyApp extends StatelessWidget {

@@ -7,6 +7,7 @@ import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_constants.dart';
 import '../../../core/utils/app_images.dart';
 import '../../../core/utils/app_style.dart';
+import '../../../core/widgets/custom_box_shadow.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -40,35 +41,27 @@ class OnBoardingScreen extends StatelessWidget {
             const Gap(40),
             InkWell(
               onTap: () async {
-                await CacheHelper.sharedPreferences.setBool("onBoarding", true);
                 if (context.mounted) {
                   Navigator.pushNamedAndRemoveUntil(
                     context,
-                    Routes.home,
+                    Routes.root,
                     (route) => false,
                   );
                 }
+                await CacheHelper.sharedPreferences.setBool("onBoarding", true);
               },
               child: Container(
                 width: 297,
                 height: 60,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withValues(alpha: 0.5),
-                      spreadRadius: 2,
-                      blurRadius: 7,
-                      offset: const Offset(0, 8), // changes position of shadow
-                    ),
-                  ],
+                  boxShadow: [customBoxShadow()],
                   borderRadius: BorderRadius.circular(20),
                   color: AppColors.primaryColor,
                 ),
                 child: Row(
-                  // crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(AppImages.outLinePets, width: 50),
+                    const Icon(Icons.pets, color: AppColors.myWhite),
                     Text("Get Started", style: AppStyle.lemon500Style18White),
                   ],
                 ),

@@ -31,7 +31,7 @@ class _SplashBodyState extends State<SplashBody> {
 
     if (!mounted) return;
     if (isOnboardingDone) {
-      Navigator.pushNamedAndRemoveUntil(context, Routes.home,(route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, Routes.root,(route) => false);
     } else {
       Navigator.pushNamedAndRemoveUntil(context, Routes.onBoarding,(route) => false);
     }

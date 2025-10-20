@@ -21,4 +21,10 @@ class AppStyle {
     fontWeight: FontWeight.w500,
     color: AppColors.myWhite
   );
+   static TextStyle lemon300Style12Grey =const TextStyle(
+    fontFamily: 'lemon',
+    fontSize: 12,
+    fontWeight: FontWeight.w300,
+    color: AppColors.myGrey
+  );
 }

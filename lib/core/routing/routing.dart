@@ -1,7 +1,9 @@
 import "package:flutter/material.dart";
-
+import "../../features/cat_facts/presentation/screens/cat_fact_screen.dart";
 import "../../features/onboarding/screens/on_boarding_screen.dart";
 import "../../features/splash/screens/splash_screen.dart";
+import "../../test_screen.dart";
+import "../root.dart";
 import "routes.dart";
 
 class Routing {
@@ -13,12 +15,16 @@ class Routing {
         return MaterialPageRoute(
           builder: (context) => const OnBoardingScreen(),
         );
-      case Routes.home:
+  
+      case Routes.root:
+        return MaterialPageRoute(builder: (context) => const Root());
+      case Routes.test:
+        return MaterialPageRoute(builder: (context) => const TestScreen());
+      case Routes.factScreen:
         return MaterialPageRoute(
-          builder: (context) => const Scaffold(
-            body: Center(child: Text("Home Screen Placeholder")),
-          ),
+          builder: (context) => const CatFactScreen(),
         );
+   
       default:
         return MaterialPageRoute(builder: (_) => const NoRouteScreen());
     }
