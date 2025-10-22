@@ -1,14 +1,13 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_images.dart';
 import '../../../../core/utils/app_style.dart';
-import '../../../../core/widgets/custom_box_shadow.dart';
 import '../cubit/cat_fact_cubit.dart';
+import '../widgets/cat_fact_card.dart';
 
 class CatFactScreen extends StatelessWidget {
   const CatFactScreen({super.key});
@@ -68,7 +67,17 @@ class CatFactScreen extends StatelessWidget {
               BlocBuilder<CatFactCubit, CatFactState>(
                 builder: (context, state) {
                   if (state is CatFactLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return Skeletonizer(
+                      enabled: true,
+                      child: ListView.builder(
+                        itemCount: 5,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return const CatFactCard(text: "Loading...");
+                        },
+                      ),
+                    );
                   } else if (state is CatFactLoaded) {
                     final facts = state.catFact.data;
                     return ListView.builder(
@@ -76,42 +85,7 @@ class CatFactScreen extends StatelessWidget {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return Container(
-                          margin: const EdgeInsets.all(10),
-                          width: double.infinity,
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [customBoxShadow()],
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFFE5F9F7),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(
-                                  Icons.auto_awesome,
-                                  color: Color(0xFF00BFA5),
-                                  size: 20,
-                                ),
-                              ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Text(
-                                  facts[index],
-                                  style: AppStyle.lemon300Style12Grey.copyWith(
-                                    color: AppColors.myBlack,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
+                        return CatFactCard(text: facts[index]);
                       },
                     );
                   } else if (state is CatFactError) {

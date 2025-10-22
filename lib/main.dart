@@ -1,6 +1,5 @@
 
 import 'package:device_preview/device_preview.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -14,14 +13,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   setUp();
-  Dio dio =Dio();
-    var data = await dio.get("https://meowfacts.herokuapp.com/?count=5");
-      debugPrint('Full response: ${data.data}'); // Raw body
-      debugPrint('Response headers: ${data.headers}');
   runApp(
    DevicePreview(enabled: !kReleaseMode, builder: (context) => const MyApp()),
  );
-
  
  
 }

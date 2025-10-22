@@ -9,7 +9,6 @@ import '../../features/cat_facts/presentation/cubit/cat_fact_cubit.dart';
 final getIt = GetIt.instance;
 
 void setUp() {
-
   getIt.registerLazySingleton<CatFactCubit>(
     () => CatFactCubit(catFactRepo: getIt()),
   );
@@ -17,11 +16,9 @@ void setUp() {
     () => CatFactRepo(catFactApiService: getIt()),
   );
   getIt.registerLazySingleton<CatFactApiService>(
-    () => CatFactApiService(createCatFactDio(
-    )),
+    () => CatFactApiService(createCatFactDio()),
   );
 }
-
 
 Dio createCatFactDio() {
   final dio = Dio();
