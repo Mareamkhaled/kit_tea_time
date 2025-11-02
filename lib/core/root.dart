@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../features/cat_facts/presentation/cubit/cat_fact_cubit.dart';
 import '../features/cat_facts/presentation/screens/cat_fact_screen.dart';
+import '../features/home/presentation/cubit/home_cubit.dart';
+import '../features/home/presentation/screens/home_screen.dart';
 import '../test_screen.dart';
 import 'helpers/di.dart';
 import 'utils/app_colors.dart';
@@ -18,6 +20,10 @@ class _RootState extends State<Root> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
+    BlocProvider<HomeCubit>(
+      create: (context) => getIt<HomeCubit>()..fetchCatImages(),
+      child: const HomeScreen(),
+    ),
     BlocProvider<CatFactCubit>(
       create: (context) => getIt<CatFactCubit>()..fetchCatFact(),
       child: const CatFactScreen(),
@@ -41,6 +47,7 @@ class _RootState extends State<Root> {
           });
         },
         items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
           BottomNavigationBarItem(
             icon: Icon(Icons.fact_check_outlined),
             label: 'Facts',
