@@ -9,13 +9,15 @@ abstract class HomeState extends Equatable {
 
 class HomeLoading extends HomeState {}
 class HomeLoaded extends HomeState {
-  final List<CatModel> cats;
+  final List<CatModel> featuredCatsSection;
+  final List<CatModel> breedsCatsSection;
 
-  const HomeLoaded(this.cats);
+  const HomeLoaded({required this.featuredCatsSection,required this.breedsCatsSection});
 
   @override
   List<Object> get props => [
-    cats,
+        featuredCatsSection,
+        breedsCatsSection,
   ];
   
 }

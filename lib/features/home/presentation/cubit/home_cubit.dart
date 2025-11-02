@@ -15,7 +15,10 @@ class HomeCubit extends Cubit<HomeState> {
     final result = await homeRepo.getCatImages();
     result.when(
       onSuccess: (cats) {
-        emit(HomeLoaded(cats));
+        emit(HomeLoaded(
+          featuredCatsSection: cats.sublist(0,5),
+          breedsCatsSection: cats.sublist(5, cats.length),
+        ));
       },
       onError: (error) {
         emit(HomeFailed(error.toString()));

@@ -20,7 +20,7 @@ class BreedsSection extends StatelessWidget {
         if (state is HomeFailed) {
           return Center(child: Text(state.errorMessage));
         } else if (state is HomeLoaded) {
-          final images = state.cats;
+          final images = state.breedsCatsSection;
 
           return ListView.builder(
             padding: const EdgeInsets.symmetric(vertical: 10),
