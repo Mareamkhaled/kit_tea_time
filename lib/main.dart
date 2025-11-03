@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'core/helpers/cache_helper.dart';
-import 'core/helpers/di.dart';
+import 'core/di/di.dart';
 import 'core/routing/routes.dart';
 import 'core/routing/routing.dart';
 import 'core/utils/app_colors.dart';
