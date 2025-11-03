@@ -5,8 +5,8 @@ import '../features/cat_facts/presentation/cubit/cat_fact_cubit.dart';
 import '../features/cat_facts/presentation/screens/cat_fact_screen.dart';
 import '../features/home/presentation/cubit/home_cubit.dart';
 import '../features/home/presentation/screens/home_screen.dart';
-import '../test_screen.dart';
-import 'helpers/di.dart';
+import 'di/cat_facts_dio.dart';
+import 'di/home_di.dart';
 import 'utils/app_colors.dart';
 
 class Root extends StatefulWidget {
@@ -21,14 +21,13 @@ class _RootState extends State<Root> {
 
   final List<Widget> _screens = [
     BlocProvider<HomeCubit>(
-      create: (context) => getIt<HomeCubit>()..fetchCatImages(),
+      create: (context) => homeGetIt<HomeCubit>()..fetchCatImages(),
       child: const HomeScreen(),
     ),
     BlocProvider<CatFactCubit>(
-      create: (context) => getIt<CatFactCubit>()..fetchCatFact(),
+      create: (context) => catFactsGetIt<CatFactCubit>()..fetchCatFact(),
       child: const CatFactScreen(),
     ),
-    const TestScreen(),
   ];
 
   @override
@@ -52,7 +51,6 @@ class _RootState extends State<Root> {
             icon: Icon(Icons.fact_check_outlined),
             label: 'Facts',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'test'),
         ],
       ),
     );
