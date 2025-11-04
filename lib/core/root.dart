@@ -5,6 +5,7 @@ import '../features/cat_facts/presentation/cubit/cat_fact_cubit.dart';
 import '../features/cat_facts/presentation/screens/cat_fact_screen.dart';
 import '../features/home/presentation/cubit/home_cubit.dart';
 import '../features/home/presentation/screens/home_screen.dart';
+import '../features/settings/presentation/screens/settings_screen.dart';
 import 'di/cat_facts_dio.dart';
 import 'di/home_di.dart';
 import 'utils/app_colors.dart';
@@ -28,6 +29,7 @@ class _RootState extends State<Root> {
       create: (context) => catFactsGetIt<CatFactCubit>()..fetchCatFact(),
       child: const CatFactScreen(),
     ),
+    const SettingsScreen(),
   ];
 
   @override
@@ -50,6 +52,10 @@ class _RootState extends State<Root> {
           BottomNavigationBarItem(
             icon: Icon(Icons.fact_check_outlined),
             label: 'Facts',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
           ),
         ],
       ),
