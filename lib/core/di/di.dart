@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'cat_facts_dio.dart';
+import 'gallery_di.dart';
 import 'home_di.dart';
 
 
 void setUp() {
  setUpHomeDio();
  setUpCatFactsDio();
+ setUpGalleryDio();
 }
 
   
