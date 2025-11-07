@@ -107,7 +107,7 @@ class FeaturedCatsSection extends StatelessWidget {
                                     onPressed: () {},
                                     icon:const CircleAvatar(
                                       backgroundColor: AppColors.myWhite,
-                                      child: const Icon(
+                                      child: Icon(
                                         Icons.favorite_border,
                                         color: AppColors.darkBlue,
                                       ),
